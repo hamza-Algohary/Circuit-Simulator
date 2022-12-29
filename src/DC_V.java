@@ -1,13 +1,11 @@
 public class DC_V extends Component{
-    double value;
-    public DC_V(Point start , Point end , double value){
-        type = Type.V;
-        this.start = start;
-        this.end = end;
-        this.value = value;     
+    //Double value;
+    public DC_V(Point[] points , Double args[]){
+        super(points , args);
+        type = Type.V;    
     }
     @Override
     public double getValue(){
-        return value;
+        return args.get(0);
     }
 } 

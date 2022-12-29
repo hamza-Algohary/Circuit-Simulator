@@ -1,8 +1,8 @@
 public class Point {
-    public int x = 0;
-    public int y = 0;
+    public double x = 0;
+    public double y = 0;
     public Point(){}
-    public Point(int x , int y){
+    public Point(double x , double y){
         this.x = x;
         this.y = y;
     }
@@ -33,7 +33,8 @@ public class Point {
         if (obj == this)
             return true;
         Point p = (Point) obj;
-        return (this.x == p.x) && (this.y == p.y);
+        //return (this.x == p.x) && (this.y == p.y);
+        return Utils.compareDoubles(this.x, p.x, 100) && Utils.compareDoubles(this.y, p.y, 100);
     }
     public void assign(Point p){
         this.x = p.x;

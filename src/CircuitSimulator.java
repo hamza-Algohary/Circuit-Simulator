@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,12 +18,49 @@ public class CircuitSimulator{
     }
     double getCurrentTimeSecond(){return currentTime_ms/1000.0;}
     double getTimeStepSecond(){return timeStep_ms/1000.0; }
-    void tick(){
+    public HashMap<String , Double> tick()throws Exception{
         this.currentTime_ms += timeStep_ms;
+        return solve();
     }
-    public CircuitSimulator(Component components[]){
+    public CircuitSimulator(Component components[])throws Exception{
+        convertWiresToNodes(components);
         this.components = components;
         this.nodes = componentsToNodes(components);
+    }
+    public CircuitSimulator(){}
+
+    private void convertWiresToNodes(Component components[])throws Exception{
+        for(Component component : components){
+            if(component.type == Component.Type.V && component.getValue()<0.00000001){
+                for(int i=1 ;i<component.points.size();i++){
+                    renameNodeInComponents(components, component.points.get(0), component.points.get(i));
+                }
+                /*boolean first = true;
+                Point p1 = component.points.get(0);
+                for(Point point : component.points){
+                    if(first){
+                        first = false;
+                        continue;
+                    }
+                    renameNodeInComponents(components, component.points.get(0), point);                    
+                }*/
+            }
+        }
+    }
+    private void renameNodeInComponents(Component components[] , Point toBeRenamed , Point newName){
+        for(Component component : components){
+            for(Point point : component.points){
+                System.out.println(point.x);
+                System.out.println(point.y);
+                System.out.println(toBeRenamed.x);
+                System.out.println(point.x == toBeRenamed.x);
+                if(point.x == toBeRenamed.x && point.y == toBeRenamed.y){
+                    //point.x = newName.x;
+                    //point.y = newName.y;
+                    //point = new Point(toBeRenamed);
+                }
+            }
+        }
     }
     public void selectRandomGround(){
         for(Component c : components){
@@ -40,7 +78,7 @@ public class CircuitSimulator{
             equationsVector.add(node.getEquation());
         }
         for(Component component : components){
-            equationsVector.add(component.getEquation());
+            equationsVector.addAll(new Vector<Equation>(Arrays.asList(component.getEquations())));
         }
         Equation groundEquation = new Equation();
         groundEquation.constant = 0;
@@ -65,23 +103,24 @@ public class CircuitSimulator{
         return varNames;
     }
 
+
+    /*---------------------------------------------------------------------- */
+    /*---------------------------------------------------------------------- */
+    /*---------------------!!!!!!!ATTEMTION!!!!!!!!------------------------- */
+    /*---------------------!!!!!!!ATTEMTION!!!!!!!!------------------------- */
+    /*---------------------!!!!!!!ATTEMTION!!!!!!!!------------------------- */ 
+    //       This method needs to be changed to support multiple nodes
+    /*---------------------!!!!!!!ATTEMTION!!!!!!!!------------------------- */
+    /*---------------------!!!!!!!ATTEMTION!!!!!!!!------------------------- */
+    /*---------------------!!!!!!!ATTEMTION!!!!!!!!------------------------- */
+    /*---------------------------------------------------------------------- */
+    /*---------------------------------------------------------------------- */
+
     public static Node[] componentsToNodes(Component components[]){
         HashMap<Point , HashMap<Component , Point>> points = new HashMap<>();
         for(Component component : components){
-            Utils.getKey(Utils.getKey(points, component.start , new HashMap<>()) , component , new Point()).assign(component.end);
-            Utils.getKey(Utils.getKey(points, component.end , new HashMap<>()) , component , new Point()).assign(component.start);
-            /*if(points.containsKey(component.start)){
-                points.get(component.start).put(component , component.end);
-            }else{
-                points.put(component.start, new HashMap<>());
-                points.get(component.start).put(component, component.end);
-            }
-            if(points.containsKey(component.end)){
-                points.get(component.end).put(component , component.start);
-            }else{
-                points.put(component.end, new HashMap<>());
-                points.get(component.end).put(component, component.start);
-            } */
+            Utils.getKey(Utils.getKey(points, component.getStart() , new HashMap<>()) , component , new Point()).assign(component.getEnd());
+            Utils.getKey(Utils.getKey(points, component.getEnd() , new HashMap<>()) , component , new Point()).assign(component.getStart());
         }
         List<Node> nodesList = new LinkedList<Node>();
         points.forEach((Point point , HashMap<Component , Point> componentsMap)->{

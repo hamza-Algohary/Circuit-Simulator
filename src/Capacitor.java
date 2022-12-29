@@ -1,16 +1,16 @@
 public class Capacitor extends Component{
-    double q = 0;
-    double capacitance;
-    public Capacitor(Point start , Point end , double capacitance){
+    Double q = 0.0;
+    Double getCapacitance(){
+        return args.get(0);
+    }
+    public Capacitor(Point[] points , Double args[]){
+        super(points, args);
         type = Type.V;
-        this.start = start;
-        this.end = end;
-        this.capacitance = capacitance;
     }
     @Override
     public double getValue(){
         // V = Q/C
-        return q/capacitance;
+        return q/getCapacitance();
     }
     @Override
     public void setState(double I , double v1 , double v2){

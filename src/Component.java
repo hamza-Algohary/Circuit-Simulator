@@ -1,15 +1,42 @@
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+
 public class Component {
-    public Component(Point start , Point end /*, double args[]*/){
-        this.start = start;
-        this.end = end;
-        //this.args = args;
+    public Component(Point[] points , Double args[]){
+        //setStart(points[0]);
+        //setEnd(points[1]);
+        this.args = Arrays.asList(args);
+        this.points = Arrays.asList(points);
     }
+    public String imageName = "";
     enum Type{IV , V ,I}
     Type type;
     boolean isGround = false;
     public Component(){}
-    public Point start = new Point();
-    public Point end = new Point();
+    public Point getStart(){return points.get(0);}
+    public Point getEnd(){return points.get(1);}    
+    //public void setStart(Point p){points.set(0 , p);}
+    //public void setEnd(Point p){points.set(1 , p);}
+    //public Point start = new Point();
+    //public Point end = new Point();
+    public List<Point> points = new LinkedList<>(); //Arrays.asList(new Point[10]);
+    public List<Double> args = new LinkedList<>(); //Arrays.asList(new Double[10]);
+    /*static Component constructComponent(String name , double args[]){
+        switch(name){
+            case Constants.R:
+                return new Resistance(new Point(0,0) , new Point(0,0) , args[0]);
+            case Constants.DC_I:
+                return new DC_I(new Point(0,0) , new Point(0,0) , args[0]);
+            case Constants.DC_V:
+                return new DC_V(new Point(0,0) , new Point(0,0) , args[0]);
+            case Constants.AC_I:
+                return new AC_I(new Point(0,0) , new Point(0,0) , args[0] , args[1]);
+            case Constants.AC_V:
+                return new AC_V(new Point(0,0) , new Point(0,0) , args[0] , args[1]);
+            }
+    }*/
     //double args[];
     //public boolean delayed = false;
     public boolean isDelayed(){
@@ -26,7 +53,7 @@ public class Component {
         return type.equals(Type.I);
     }
     public String getBranchName(){
-        return start.toString() + ":" + end.toString();
+        return getStart().toString() + ":" + getEnd().toString();
     }
     public double getValue() throws Exception{
         throw new Exception("Empty Component");
@@ -37,27 +64,27 @@ public class Component {
     public double getConstant(Point currentNode)throws Exception{
         if(!type.equals(Type.I))
             throw new Exception("Non-I components don't have constants");
-        if(currentNode.equals(end)){
+        if(currentNode.equals(getEnd())){
             return getValue();
         }else{
             return getValue()*-1;
         }
     }
     public Variable getVar(Point currentNode)throws Exception{
-        /*if(type == Type.I)
-            throw new Exception("Invalid Operation on non-IV component.");*/
+        if(type == Type.I)
+            throw new Exception("Invalid Operation on non-IV component.");
         String name = "";
         double value = 0;
         if(type == Type.IV){
             value = -1/getValue();
-            if(currentNode.equals(start)){
+            if(currentNode.equals(getStart())){
                 name = getVendName();
             }else{
                 name = getVstartName();
             }
         }else if(type == Type.V){
             name = getIName();
-            if(currentNode.equals(start)){
+            if(currentNode.equals(getStart())){
                 value = /*getValue()*/1;
             }else{
                 value = -1;//getValue();
@@ -66,7 +93,7 @@ public class Component {
         
         return new Variable(name,value);    
     }
-    public Equation getEquation()throws Exception{
+    public Equation[] getEquations()throws Exception{
         Equation equation = new Equation();
         switch(type){
             case IV:
@@ -83,15 +110,16 @@ public class Component {
                 equation.vars.add(new Variable(getVstartName(), -1));
                 break;
         }
-        return equation;
+        Equation equations[] = new Equation[]{equation};
+        return equations;
     }
     public String getIName(){
         return "I"+getBranchName();
     }
     public String getVstartName(){
-        return "V"+start;
+        return "V"+getStart();
     }
     public String getVendName(){
-        return "V"+end;
+        return "V"+getEnd();
     }
 }

@@ -1,15 +1,14 @@
 public class AC_V extends Component{
     double frequency , amplitude;
-    public AC_V(Point start , Point end , double frequency , double amplitude){
+    Double getFrequency(){return args.get(0);}
+    Double getAmplitude(){return args.get(1);}
+    public AC_V(Point[] points , Double args[]){
+        super(points, args);
         this.type = Type.V;
-        this.start = start;
-        this.end = end;
-        this.frequency = frequency;
-        this.amplitude = amplitude; 
     }
     @Override
     public double getValue(){
         //Asin(2PI*F*t)
-        return amplitude*Math.sin(2*Math.PI*frequency*simulator.getCurrentTimeSecond());
+        return getAmplitude()*Math.sin(2*Math.PI*getFrequency()*simulator.getCurrentTimeSecond());
     }
 }

@@ -25,4 +25,7 @@ public class Utils {
         map.put(targetKey , defaultValue);
         return map.get(targetKey);
     }
+    public static boolean compareDoubles(double x , double y , int precision){
+        return (int)x*precision ==  (int)y*precision;
+    }
 }

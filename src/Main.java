@@ -28,34 +28,40 @@ public class Main{
         pMap.put(p1, "hello");
         System.out.println(pMap.containsKey(p1));
         */
-        Component[] components = {
-            new DC_V(new Point(0 , 0) , new Point(0 , 1) , 15),
-            new Resistance(new Point(0 , 1) , new Point(1 , 1) , 5),
-            new Resistance(new Point(0 , 0) , new Point(1 , 0) , 5),
-            new Resistance(new Point(1 , 0) , new Point(1 , 1) , 5)
-        };
+        
         /*Component[] components = {
-            new DC_V(new Point(0 , 0) , new Point(1 , 0) , 0),
-            new Resistance(new Point(1 , 0) , new Point(2 , 0) , 12000),
-            new DC_V(new Point(2 , 0) , new Point(3 , 0) , 0),
-
-            new Resistance(new Point(0 , 0), new Point(0 , 1), 4000),
-            new Resistance(new Point(1 , 0), new Point(1 , 1), 6000),
-            new Resistance(new Point(2 , 0), new Point(2 , 1), 18000),
-            new Resistance(new Point(3 , 0), new Point(3 , 1), 6000),
-
-            new DC_V(new Point(1 , 1), new Point(2 , 1), 0),
-
-            new DC_V(new Point(0 , 1), new Point(0 , 2), 0),
-            new DC_V(new Point(2 , 1), new Point(2 , 2), -42),
-            new DC_V(new Point(3 , 1), new Point(3 , 2), 0),
-
-            new DC_V(new Point(0 , 2), new Point(1 , 2), 0),
-            new DC_V(new Point(1 , 2), new Point(2 , 2), 0),
-            new DC_V(new Point(2 , 2), new Point(3 , 2), 0),     
+            new DC_V(new Point[]{new Point(0 , 0) , new Point(0 , 1)} , new Double[] {15.0}),
+            new Resistance(new Point[]{new Point(0 , 1) , new Point(1 , 1)} , new Double[] {5.0}),
+            new Resistance(new Point[]{new Point(0 , 0) , new Point(1 , 0)} , new Double[] {5.0}),
+            new Resistance(new Point[]{new Point(1 , 0) , new Point(1 , 1)} , new Double[] {5.0})
         };*/
+        Component[] components = {
+            new DC_V(new Point[]{new Point(0 , 0) , new Point(1 , 0)} , new Double[]{0.0}),
+            new Resistance(new Point[]{new Point(1 , 0) , new Point(2 , 0)} , new Double[]{12000.0}),
+            new DC_V(new Point[]{new Point(2 , 0) , new Point(3 , 0)} , new Double[]{0.0}),
 
-        CircuitSimulator simulator = new CircuitSimulator(components);
+            new Resistance(new Point[]{new Point(0 , 0), new Point(0 , 1)}, new Double[]{4000.0}),
+            new Resistance(new Point[]{new Point(1 , 0), new Point(1 , 1)}, new Double[]{6000.0}),
+            new Resistance(new Point[]{new Point(2 , 0), new Point(2 , 1)}, new Double[]{18000.0}),
+            new Resistance(new Point[]{new Point(3 , 0), new Point(3 , 1)}, new Double[]{6000.0}),
+
+            new DC_V(new Point[]{new Point(1 , 1), new Point(2 , 1)}, new Double[]{0.0}),
+
+            new DC_V(new Point[]{new Point(0 , 1), new Point(0 , 2)}, new Double[]{0.0}),
+            new DC_V(new Point[]{new Point(2 , 1), new Point(2 , 2)}, new Double[]{-42.0}),
+            new DC_V(new Point[]{new Point(3 , 1), new Point(3 , 2)}, new Double[]{0.0}),
+
+            new DC_V(new Point[]{new Point(0 , 2), new Point(1 , 2)}, new Double[]{0.0}),
+            new DC_V(new Point[]{new Point(1 , 2), new Point(2 , 2)}, new Double[]{0.0}),
+            new DC_V(new Point[]{new Point(2 , 2), new Point(3 , 2)}, new Double[]{0.0}),     
+        };
+        CircuitSimulator simulator = new CircuitSimulator();
+        try{
+            simulator = new CircuitSimulator(components);
+        }catch(Exception e){
+            System.out.println(e);
+            e.printStackTrace();
+        }
         HashMap<String , Double> varNames = new HashMap<>();
         try{
             varNames = simulator.solve();      
