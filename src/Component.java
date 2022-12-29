@@ -10,6 +10,20 @@ public class Component {
         this.args = Arrays.asList(args);
         this.points = Arrays.asList(points);
     }
+    // returns true if they weren't initially sorted, false otherwise.
+    /*protected boolean sortStartAndEnd(){
+        if(getStart().x > getEnd().x || getStart().y > getEnd().y){
+            Utils.swap(points.get(0) , points.get(1));
+            return true;
+        }
+        return false;
+    }*/
+    protected boolean isSorted(){
+        if(getStart().x > getEnd().x || getStart().y > getEnd().y){
+            return false;
+        }
+        return true;       
+    }
     public String imageName = "";
     enum Type{IV , V ,I}
     Type type;
@@ -52,9 +66,9 @@ public class Component {
     boolean hasConstant(){
         return type.equals(Type.I);
     }
-    public String getBranchName(){
+    /*public String getBranchName(){
         return getStart().toString() + ":" + getEnd().toString();
-    }
+    }*/
     public double getValue() throws Exception{
         throw new Exception("Empty Component");
     }
@@ -98,7 +112,7 @@ public class Component {
         switch(type){
             case IV:
                 equation.constant = 0;
-                equation.vars.add(new Variable(getIName(), -1));
+                equation.vars.add(new Variable(getIName(), isSorted()?-1:1));
                 equation.vars.add(new Variable(getVendName(), -1.0/getValue()));
                 equation.vars.add(new Variable(getVstartName(), 1.0/getValue()));                   
                 break;
@@ -114,7 +128,11 @@ public class Component {
         return equations;
     }
     public String getIName(){
-        return "I"+getBranchName();
+        //return "I"+getBranchName();
+        if(isSorted()){
+            return "I"+getStart()+":"+getEnd();
+        }
+        return "I"+getEnd()+":"+getStart();
     }
     public String getVstartName(){
         return "V"+getStart();

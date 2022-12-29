@@ -28,4 +28,9 @@ public class Utils {
     public static boolean compareDoubles(double x , double y , int precision){
         return (int)x*precision ==  (int)y*precision;
     }
+    public static <T> void swap(T x , T y){
+        T tmp = x;
+        x = y;
+        y = tmp;
+    }
 }
