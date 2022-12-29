@@ -1,4 +1,6 @@
+import java.io.File;
 import java.util.HashMap;
+import java.util.Scanner;
 import java.util.Vector;
 
 public class ComponentUI{
@@ -13,7 +15,7 @@ public class ComponentUI{
             new Point(x+0.5 , y+1)
         };
         Vector<Point> targetPoints = new Vector<>();
-        String target = componentsImages.get(name)[orientation.get()];
+        String target = componentsOrientataions.get(name)[orientation.get()];
         for(int c : target.chars().toArray()){
             targetPoints.add(nodes[Character.getNumericValue((char)c)]);
         }
@@ -47,12 +49,11 @@ public class ComponentUI{
         }
     }
     String getImage(){
-        return componentsImages.get(name)[0];
+        return name;
     }
     void rotate(){
         orientation.inc();
     }
-
     static HashMap<String , String[]> componentsArgs = new HashMap<>();
     static final int MAX_ARGS = 2;
     static{
@@ -67,9 +68,19 @@ public class ComponentUI{
         componentsArgs.put(Constants.W4, new String[]{});
     }
 
-    static HashMap<String , String[]> componentsImages = new HashMap<>();
+    static HashMap<String , String[]> componentsOrientataions = new HashMap<>();
     static{
-
+        try{
+            File orientations = new File("../src/components_images.txt");
+            Scanner in = new Scanner(orientations);
+            while(in.hasNextLine()){
+                String name = in.nextLine();
+                String ors[] = in.nextLine().split(" ", 4);
+                componentsOrientataions.put(name, ors);
+            }
+            in.close();
+        }catch(Exception e){
+            System.out.println(e);
+        }
     }
-
 }

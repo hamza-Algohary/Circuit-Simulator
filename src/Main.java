@@ -55,6 +55,7 @@ public class Main{
             new DC_V(new Point[]{new Point(1 , 2), new Point(2 , 2)}, new Double[]{0.0}),
             new DC_V(new Point[]{new Point(2 , 2), new Point(3 , 2)}, new Double[]{0.0}),     
         };
+
         CircuitSimulator simulator = new CircuitSimulator();
         try{
             simulator = new CircuitSimulator(components);
@@ -71,7 +72,13 @@ public class Main{
         varNames.forEach((String name , Double value)->{
             System.out.println(name + " = " + value);
         });
-        System.out.println(varNames.get("I0,0:1,0"));
+        //System.out.println(varNames.get("I0,0:1,0"));
+        for (HashMap.Entry<String , String[]> entry : ComponentUI.componentsOrientataions.entrySet()) {
+            System.out.println(entry.getKey());
+            for (String s :  entry.getValue()){
+                System.out.println("\t"+s);
+            }
+        }
         /*System.out.println(components[0].getEquation());
         System.out.println(components[1].getEquation());
         System.out.println(components[2].getEquation());
