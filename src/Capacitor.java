@@ -10,10 +10,12 @@ public class Capacitor extends Component{
     @Override
     public double getValue(){
         // V = Q/C
-        return q/getCapacitance();
+        System.out.println("Q = "+ q + " V = " + -q/getCapacitance());
+        return -q/getCapacitance();
     }
     @Override
     public void setState(double I , double v1 , double v2){
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!        I = "+I+"      !!!!!!!!!!!!!!!!");
         if(!simulator.isDelayedComputation())
             this.q += I*simulator.getTimeStepSecond();
     }

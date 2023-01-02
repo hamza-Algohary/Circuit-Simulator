@@ -1,7 +1,7 @@
 public class Wire extends Component {
     public Wire(Point[] points , Double args[]){
         super(points , args);
-        type = Type.V;    
+        type = Type.W;    
     }
     @Override
     public double getValue(){

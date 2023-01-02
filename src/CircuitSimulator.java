@@ -25,13 +25,16 @@ public class CircuitSimulator{
     public CircuitSimulator(Component components[])throws Exception{
         convertWiresToNodes(components);
         this.components = components;
+        for(Component component : this.components){
+            component.simulator = this;
+        }
         this.nodes = componentsToNodes(components);
     }
-    public CircuitSimulator(){}
+    //public CircuitSimulator(){}
 
     private void convertWiresToNodes(Component components[])throws Exception{
         for(Component component : components){
-            if(component.type == Component.Type.V && component.getValue()<0.00000001){
+            if(component.type == Component.Type.W && component.getValue()<0.00000001){
                 for(int i=1 ;i<component.points.size();i++){
                     renameNodeInComponents(components, component.points.get(0), component.points.get(i));
                 }
@@ -50,14 +53,14 @@ public class CircuitSimulator{
     private void renameNodeInComponents(Component components[] , Point toBeRenamed , Point newName){
         for(Component component : components){
             for(Point point : component.points){
-                System.out.println(point.x);
-                System.out.println(point.y);
-                System.out.println(toBeRenamed.x);
-                System.out.println(point.x == toBeRenamed.x);
+                //System.out.println(point.x);
+                //System.out.println(point.y);
+                //System.out.println(toBeRenamed.x);
+                //System.out.println(point.x == toBeRenamed.x);
                 if(point.x == toBeRenamed.x && point.y == toBeRenamed.y){
-                    //point.x = newName.x;
-                    //point.y = newName.y;
-                    //point = new Point(toBeRenamed);
+                    point.x = newName.x;
+                    point.y = newName.y;
+                    point = new Point(toBeRenamed);
                 }
             }
         }

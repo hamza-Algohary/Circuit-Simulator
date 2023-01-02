@@ -23,18 +23,18 @@ public class LinearSystem{
                 System.out.println(e.toString());
             }*/
 
-            for(String var : varNames){
+            /*for(String var : varNames){
                 System.out.println(var);
-            }
-            System.out.println("-----------------");
+            }*/
+            /*System.out.println("-----------------");
             System.out.println(equations.length);
             System.out.println(varNames.length);
             System.out.println(constants.length);
-            System.out.println(coeff.length);
+            System.out.println(coeff.length);*/
             //throw new Exception("equations.length < varNames.length");
         //}
         for(Equation equation : equations){
-            System.out.println(equation);
+            //System.out.println(equation);
         }
         for(int i=0 ; i<equations.length ; i++){
             for(Variable var : equations[i].vars){

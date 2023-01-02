@@ -1,97 +1,142 @@
-import java.util.HashMap;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
 
-public class Main{
-    public static void main(String args[]) throws Exception{
-        /*double Aarr[][] = {
-            {1 ,0 ,0, 0, 0, 0},
-            {-1, 1, 0, 0, 0, 0},
-            {0 ,-0.2 ,0.7, -0.4, 0, -0.1},
-            {0 ,0 , -0.4 , 0.8, -0.4, 0},
-            {0 ,0, 0, -0.4 ,0.6, -0.2},
-            {-0.2 ,0 ,-0.1, 0, -0.2, 0.5},
-        };
-        double Barr[] = {0, 30, 0, 0, 0, 0};
-        HashMap<String , Double> vars = new HashMap<>();
-        String varNames[] = {"v0","v1","v2","v3","v4","v5"};
-        try{
-            vars = Algebra.solve(varNames , Aarr, Barr);
-        }catch(Exception e){
-            System.out.println(e.toString());
-        }
-        vars.forEach((String name , Double value)->{
-            System.out.println(name + " = " + value);
-        });*/
-        /*Point p1 = new Point(1 , 1);
-        Point p2 = new Point(1 , 1);
-        System.out.println(p1.equals(p2));
-        HashMap<Point, String> pMap = new HashMap<>();
-        pMap.put(p1, "hello");
-        System.out.println(pMap.containsKey(p1));
-        */
-        
-        /*Component[] components = {
-            new DC_V(new Point[]{new Point(0 , 0) , new Point(0 , 1)} , new Double[] {15.0}),
-            new Resistance(new Point[]{new Point(0 , 1) , new Point(1 , 1)} , new Double[] {5.0}),
-            new Resistance(new Point[]{new Point(0 , 0) , new Point(1 , 0)} , new Double[] {5.0}),
-            new Resistance(new Point[]{new Point(1 , 0) , new Point(1 , 1)} , new Double[] {5.0})
-        };*/
-        Component[] components = {
-            new DC_V(new Point[]{new Point(0 , 0) , new Point(1 , 0)} , new Double[]{0.0}),
-            new Resistance(new Point[]{new Point(1 , 0) , new Point(2 , 0)} , new Double[]{12000.0}),
-            new DC_V(new Point[]{new Point(2 , 0) , new Point(3 , 0)} , new Double[]{0.0}),
+public class Main implements ActionListener {
+    static JButton b1;
+    static JButton b2;
+    static JButton b3;
+    static JButton b4;
+    static JTextField tF1;
+    static JTextField tF2;
+    static JTextField tF3;
+    static int rows =10;
+    static int cols =10;
+    static int i=0;
+    static JButton [][] button=new ComponentUI[rows][cols];
+    static JLabel []label=new JLabel[100];
+    public static void main(String[] args) {
 
-            new Resistance(new Point[]{new Point(0 , 0), new Point(0 , 1)}, new Double[]{4000.0}),
-            new Resistance(new Point[]{new Point(1 , 0), new Point(1 , 1)}, new Double[]{6000.0}),
-            new Resistance(new Point[]{new Point(2 , 0), new Point(2 , 1)}, new Double[]{18000.0}),
-            new Resistance(new Point[]{new Point(3 , 0), new Point(3 , 1)}, new Double[]{6000.0}),
+        b3 = new JButton("Click me");
+        b3.setBounds(100,50,100,50);
+        JPanel p4 = new JPanel();
+        p4.setBounds(700,50,300,150);
+        p4.setBackground(Color.RED);
+        p4.setLayout(null);
+        p4.add(b3);
 
-            new DC_V(new Point[]{new Point(1 , 1), new Point(2 , 1)}, new Double[]{0.0}),
+        b4 = new JButton("Click me");
+        b4.setBounds(100,50,100,50);
+        JPanel p5 = new JPanel();
+        p5.setBounds(700,250,300,150);
+        p5.setBackground(Color.blue);
+        p5.setLayout(null);
+        p5.add(b4);
 
-            new DC_V(new Point[]{new Point(0 , 1), new Point(0 , 2)}, new Double[]{0.0}),
-            new DC_V(new Point[]{new Point(2 , 1), new Point(2 , 2)}, new Double[]{-42.0}),
-            new DC_V(new Point[]{new Point(3 , 1), new Point(3 , 2)}, new Double[]{0.0}),
+        JPanel p6 = new JPanel();
+        p6.setBounds(700,450,300,77);
+        p6.setBackground(Color.black);
 
-            new DC_V(new Point[]{new Point(0 , 2), new Point(1 , 2)}, new Double[]{0.0}),
-            new DC_V(new Point[]{new Point(1 , 2), new Point(2 , 2)}, new Double[]{0.0}),
-            new DC_V(new Point[]{new Point(2 , 2), new Point(3 , 2)}, new Double[]{0.0}),     
-        };
 
-        CircuitSimulator simulator = new CircuitSimulator();
-        try{
-            simulator = new CircuitSimulator(components);
-        }catch(Exception e){
-            System.out.println(e);
-            e.printStackTrace();
-        }
-        HashMap<String , Double> varNames = new HashMap<>();
-        try{
-            varNames = simulator.solve();      
-        }catch(Exception e){
-            throw e;
-        }
-        varNames.forEach((String name , Double value)->{
-            System.out.println(name + " = " + value);
-        });
-        //System.out.println(varNames.get("I0,0:1,0"));
-        for (HashMap.Entry<String , String[]> entry : ComponentUI.componentsOrientataions.entrySet()) {
-            System.out.println(entry.getKey());
-            for (String s :  entry.getValue()){
-                System.out.println("\t"+s);
+        JPanel p7 = new JPanel();
+        p7.setBounds(700,527,300,76);
+        p7.setBackground(Color.gray);
+
+
+        JPanel p8 = new JPanel();
+        p8.setBounds(700,603,300,77);
+        p8.setBackground(Color.green);
+
+
+
+        b1 = new JButton("RUN");
+        b1.setBounds(0,0,50,40);
+
+        b2 = new JButton("Rotate");
+        b2.setBounds(75,0,50,40);
+
+        tF1 = new JTextField();
+        tF1.setBounds(50,5,200,40);
+
+        JPanel p9 = new JPanel();
+        p9.setBounds(700,200,300,50);
+        p9.setLayout(null);
+        p9.add(tF1);
+
+        tF2 = new JTextField();
+        tF2.setBounds(50,5,100,40);
+
+        tF3 = new JTextField();
+        tF3.setBounds(150,5,100,40);
+
+        JPanel p10 = new JPanel();
+        p10.setBounds(700,400,300,50);
+        p10.setLayout(null);
+        p10.add(tF2);
+        p10.add(tF3);
+
+
+
+
+        JPanel p1 = new JPanel();
+        p1.setBounds(0,0,1000,50);
+        p1.setBackground(Color.CYAN);
+        p1.add(b1);
+        p1.add(b2);
+
+        JPanel p2 = new JPanel();
+        p2.setBounds(0,50,700,630);
+        p2.setBackground(Color.orange);
+        p2.setLayout(new GridLayout(rows,cols));
+        for(int i=0; i<button.length; i++)
+        {
+            for(int j=0 ;j<button.length ;j++)
+            {
+                button[i][j]=new ComponentUI();
+                p2.add(button[i][j]);
             }
         }
-        /*System.out.println(components[0].getEquation());
-        System.out.println(components[1].getEquation());
-        System.out.println(components[2].getEquation());
-        System.out.println(components[3].getEquation());
-        System.out.println(simulator.nodes.length);
-        System.out.println(simulator.nodes[0]);
-        System.out.println(simulator.nodes[1]);
-        System.out.println(simulator.nodes[2]);
-        System.out.println(simulator.nodes[3]);
-        System.out.println(simulator.nodes[0].getEquation());
-        varNames.forEach((String name, Double value)->{
-            System.out.println(name + " = " + value);
-        });*/
-        
+
+
+
+        JFrame frame = new JFrame();
+        frame.setSize(1000,680);
+        frame.setLayout(null);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.add(p1);
+        frame.add(p2);
+        frame.add(p4);
+        frame.add(p9);
+        frame.add(p5);
+        frame.add(p10);
+        frame.add(p6);
+        frame.add(p7);
+        frame.add(p8);
+
+        frame.setVisible(true);
+        frame.setResizable(true);
+
     }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        //if (e.getSource()==b1){}
+
+        //if (e.getSource()==b2){}
+
+        if (e.getSource()==b3){
+            MinimalDynamicChart chart = new MinimalDynamicChart();
+        }
+
+        if (e.getSource()==b4){
+           new MinimalDynamicChart();
+           MinimalDynamicChart chart = new MinimalDynamicChart();
+        }
+
+        //if (e.getSource()==tF1){}
+        //if (e.getSource()==tF2){}
+       //if (e.getSource()==tF3){}
+    }
+
+
 }

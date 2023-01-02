@@ -25,7 +25,7 @@ public class Component {
         return true;       
     }
     public String imageName = "";
-    enum Type{IV , V ,I}
+    enum Type{IV , V ,I , W}
     Type type;
     boolean isGround = false;
     public Component(){}
