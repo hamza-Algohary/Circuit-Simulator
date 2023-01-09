@@ -17,6 +17,7 @@ Circuit Simulator uses the following libraries:
 - [ejml](https://github.com/lessthanoptimal/ejml) (For solving linear system of equations)
 - [jchart2d](https://jchart2d.sourceforge.net/) (For providing the oscilliscope)
 - GUI is done using Swing&trade;
+
 There is no need to install them before building from source, because they're already included in the repository.
 
 ## Usage
