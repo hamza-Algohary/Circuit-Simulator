@@ -34,8 +34,11 @@ Which corresponds to the following circuit:
 ![Simple Circuit Imgae](screenshots/circuit.svg)
 
 To run the program with that file, navigate to bin directory then fire up a terminal and type:
+
 `./run.sh test.txt`
+
 if you're running it for the first time you need to type this command first:
+
 `chmod +x run.sh`
 
 After running the program you will find a newly created file called `results.txt` containing key-value pairs of all variables in the circuit.
