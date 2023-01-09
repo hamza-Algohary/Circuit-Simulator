@@ -6,6 +6,11 @@ public class DC_V extends Component{
     }
     @Override
     public double getValue(){
-        return args.get(0);
+        try{
+            return args.get(0);
+        }catch(Exception e){
+            return 0;
+        }
+        
     }
 } 

@@ -10,6 +10,13 @@ public class Component {
         this.args = Arrays.asList(args);
         this.points = Arrays.asList(points);
     }
+    private double stateI = 0 , stateV = 0;
+    public double getI(){
+        return stateI;
+    }
+    public double getV(){
+        return stateV;
+    }
     // returns true if they weren't initially sorted, false otherwise.
     /*protected boolean sortStartAndEnd(){
         if(getStart().x > getEnd().x || getStart().y > getEnd().y){
@@ -25,7 +32,7 @@ public class Component {
         return true;       
     }
     public String imageName = "";
-    enum Type{IV , V ,I , W}
+    enum Type{IV , V ,I , OTHER}
     Type type;
     boolean isGround = false;
     public Component(){}
@@ -35,6 +42,9 @@ public class Component {
     //public void setEnd(Point p){points.set(1 , p);}
     //public Point start = new Point();
     //public Point end = new Point();
+    public Type getType(){
+        return type;
+    }
     public List<Point> points = new LinkedList<>(); //Arrays.asList(new Point[10]);
     public List<Double> args = new LinkedList<>(); //Arrays.asList(new Double[10]);
     /*static Component constructComponent(String name , double args[]){
@@ -58,13 +68,13 @@ public class Component {
     }
     CircuitSimulator simulator;
     boolean hasVar(){
-        return type.equals(Type.IV) || type.equals(Type.V);
+        return getType().equals(Type.IV) || getType().equals(Type.V);
     }
     boolean hasEquation(){
-        return type.equals(Type.IV) || type.equals(Type.V);
+        return getType().equals(Type.IV) || getType().equals(Type.V);
     }
     boolean hasConstant(){
-        return type.equals(Type.I);
+        return getType().equals(Type.I);
     }
     /*public String getBranchName(){
         return getStart().toString() + ":" + getEnd().toString();
@@ -73,10 +83,11 @@ public class Component {
         throw new Exception("Empty Component");
     }
     public void setState(double I , double v1 , double v2){
-
+        stateI = I;
+        stateV = v1 - v2;
     }
     public double getConstant(Point currentNode)throws Exception{
-        if(!type.equals(Type.I))
+        if(!getType().equals(Type.I))
             throw new Exception("Non-I components don't have constants");
         if(currentNode.equals(getEnd())){
             return getValue();
@@ -85,18 +96,18 @@ public class Component {
         }
     }
     public Variable getVar(Point currentNode)throws Exception{
-        if(type == Type.I)
+        if(getType() == Type.I)
             throw new Exception("Invalid Operation on non-IV component.");
         String name = "";
         double value = 0;
-        if(type == Type.IV){
+        if(getType() == Type.IV){
             value = -1/getValue();
             if(currentNode.equals(getStart())){
                 name = getVendName();
             }else{
                 name = getVstartName();
             }
-        }else if(type == Type.V){
+        }else if(getType() == Type.V){
             name = getIName();
             if(currentNode.equals(getStart())){
                 value = /*getValue()*/1;
@@ -109,7 +120,7 @@ public class Component {
     }
     public Equation[] getEquations()throws Exception{
         Equation equation = new Equation();
-        switch(type){
+        switch(getType()){
             case IV:
                 equation.constant = 0;
                 equation.vars.add(new Variable(getIName(), isSorted()?-1:1));
@@ -127,17 +138,17 @@ public class Component {
         Equation equations[] = new Equation[]{equation};
         return equations;
     }
-    public String getIName(){
+    public final String getIName(){
         //return "I"+getBranchName();
         if(isSorted()){
             return "I"+getStart()+":"+getEnd();
         }
         return "I"+getEnd()+":"+getStart();
     }
-    public String getVstartName(){
+    public final String getVstartName(){
         return "V"+getStart();
     }
-    public String getVendName(){
+    public final String getVendName(){
         return "V"+getEnd();
     }
 }

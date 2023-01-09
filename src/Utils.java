@@ -1,4 +1,6 @@
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Vector;
 
 public class Utils {
     public static double[] convertDoubleArraytodouble(Double array[]){
@@ -33,4 +35,25 @@ public class Utils {
         x = y;
         y = tmp;
     }
+    public static <T> Vector<T> shortenVector(Vector<T> vect , int size){
+        Vector<T> vector = new Vector<>();
+        for(int i=0 ; i<vect.size() && i<size; i++){
+            vector.add(vect.get(i));
+        }
+        return vector;
+    }
+
+    /*public static <T> T[] shortenArray(T[] arr , int size){
+        return (T[]) shortenVector(new Vector<T>(Arrays.asList(arr)), size).toArray();
+    }*/
+    public static Double[] stringsToDoubles(String args[]){
+        Double result[] = new Double[args.length];
+        for(int i=0;i<args.length;i++){
+            result[i] = Double.parseDouble(args[i]);
+        }
+        return result;
+    }
+    /*public static String[] split(String str , char delim){
+        String[] arr = str.
+    }*/
 }

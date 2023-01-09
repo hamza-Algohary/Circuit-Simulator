@@ -6,6 +6,11 @@ public class Point {
         this.x = x;
         this.y = y;
     }
+    public Point(String str){
+        var points = str.split(",", 2);
+        this.x = Double.parseDouble(points[0]);
+        this.y = Double.parseDouble(points[1]);
+    }
     public Point(Point other){this.x = other.x; this.y = other.y;}
     public Point plus(Point other){
         return new Point(this.x + other.x , this.y + other.y);

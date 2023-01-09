@@ -15,6 +15,7 @@ public class Capacitor extends Component{
     }
     @Override
     public void setState(double I , double v1 , double v2){
+        super.setState(I, v1, v2);
         System.out.println("!!!!!!!!!!!!!!!!!!!!!        I = "+I+"      !!!!!!!!!!!!!!!!");
         if(!simulator.isDelayedComputation())
             this.q += I*simulator.getTimeStepSecond();

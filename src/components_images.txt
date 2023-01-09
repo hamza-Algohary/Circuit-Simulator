@@ -6,8 +6,10 @@ Current Source
 02 13 20 31
 Wire
 20 31 02 13
+Wire2.1
+01 12 23 30
 Wire 3
-210 321 032 103
+103 210 321 032 
 Wire 4
 0123 0123 0123 0123
 AC Voltage Source

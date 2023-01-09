@@ -7,8 +7,8 @@ import java.util.Vector;
 public class CircuitSimulator{
     public Component components[] = new Component[0];
     public Node nodes[] = new Node[0];
-    int currentTime_ms = 0;
-    int timeStep_ms = 1;
+    double currentTime_ms = 0;
+    double timeStep_ms = 0.005;
     boolean delayedComputation = false;
     public boolean isDelayedComputation(){return delayedComputation;}
     public boolean hasDelayedComponents(){
@@ -22,8 +22,8 @@ public class CircuitSimulator{
         this.currentTime_ms += timeStep_ms;
         return solve();
     }
-    public CircuitSimulator(Component components[])throws Exception{
-        convertWiresToNodes(components);
+    public CircuitSimulator(Component components[]){
+        //convertWiresToNodes(components);
         this.components = components;
         for(Component component : this.components){
             component.simulator = this;
@@ -32,9 +32,9 @@ public class CircuitSimulator{
     }
     //public CircuitSimulator(){}
 
-    private void convertWiresToNodes(Component components[])throws Exception{
+    /*private void convertWiresToNodes(Component components[])throws Exception{
         for(Component component : components){
-            if(component.type == Component.Type.W && component.getValue()<0.00000001){
+            if(component.getType() == Component.Type.W && component.getValue()<0.00000001){
                 for(int i=1 ;i<component.points.size();i++){
                     renameNodeInComponents(components, component.points.get(0), component.points.get(i));
                 }
@@ -47,10 +47,10 @@ public class CircuitSimulator{
                     }
                     renameNodeInComponents(components, component.points.get(0), point);                    
                 }*/
-            }
+    /*        }
         }
-    }
-    private void renameNodeInComponents(Component components[] , Point toBeRenamed , Point newName){
+    }*/
+    /*private void renameNodeInComponents(Component components[] , Point toBeRenamed , Point newName){
         for(Component component : components){
             for(Point point : component.points){
                 //System.out.println(point.x);
@@ -64,10 +64,10 @@ public class CircuitSimulator{
                 }
             }
         }
-    }
+    }*/
     public void selectRandomGround(){
         for(Component c : components){
-            if( c.type == Component.Type.V ){
+            if( c.getType() == Component.Type.V ){
                 c.isGround = true;
                 break;
             }
@@ -81,7 +81,8 @@ public class CircuitSimulator{
             equationsVector.add(node.getEquation());
         }
         for(Component component : components){
-            equationsVector.addAll(new Vector<Equation>(Arrays.asList(component.getEquations())));
+            if(component.hasEquation())
+                equationsVector.addAll(new Vector<Equation>(Arrays.asList(component.getEquations())));
         }
         Equation groundEquation = new Equation();
         groundEquation.constant = 0;
@@ -98,7 +99,13 @@ public class CircuitSimulator{
             LinearSystem system = new LinearSystem(getEquations());
             varNames = system.solve();
             for(Component component : components){
-                component.setState(varNames.get(component.getIName()), varNames.get(component.getVstartName()), varNames.get(component.getVendName()));
+                /*component.setState(
+                    varNames.get(component.getIName()), 
+                    varNames.get(component.getVstartName()), 
+                    varNames.get(component.getVendName()));*/
+                component.setState(Utils.getKey(varNames, component.getIName(), 0.0),
+                                   Utils.getKey(varNames, component.getVstartName(), 0.0),
+                                   Utils.getKey(varNames, component.getVendName(), 0.0));
             }
             delayedComputation = true;
         }

@@ -18,7 +18,7 @@ public class Node {
         double sum = 0;
         if(components == null) System.out.println("null type");
         for(Component component : components.keySet()){
-            if(component.type.equals(Component.Type.IV)){
+            if(component.getType().equals(Component.Type.IV)){
                 sum += 1/component.getValue();
             }
         }
