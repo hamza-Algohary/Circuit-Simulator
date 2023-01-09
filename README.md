@@ -4,7 +4,9 @@ Circuit Simulator is a circuit simulation program. It's written in Java, hence i
 You can find zip binary package in github releases.
 ## Build From Source
 First clone the github repository,
-```git clone https://github.com/hamza-Algohary/Circuit-Simulator```
+```
+git clone https://github.com/hamza-Algohary/Circuit-Simulator
+```
 Then use makefile,
 ```
 cd Circuit-Simulator
