@@ -35,11 +35,15 @@ Which corresponds to the following circuit:
 
 To run the program with that file, navigate to bin directory then fire up a terminal and type:
 
-`./run.sh test.txt`
+```
+./run.sh test.txt
+```
 
 if you're running it for the first time you need to type this command first:
 
-`chmod +x run.sh`
+```
+chmod +x run.sh
+```
 
 After running the program you will find a newly created file called `results.txt` containing key-value pairs of all variables in the circuit.
 
@@ -84,9 +88,13 @@ Here is a list of expected arguments for each component:
 
 ## Output File Structure
 Each line contains one variable as following:
+
 Variable Name = Value
+
 Where variable name is either __node voltage__ or __branch current__.
+
 Node voltage is "V" followed by node coordinate
+
 Branch current is "I" followed by start then end coordinates of the branch.
 
 #### How to determine current direction?
