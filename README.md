@@ -1,7 +1,7 @@
 ## Overview
 Circuit Simulator is a circuit simulation program. It's written in Java, hence it's available on Windows Mac & Linux. It provides both CLI and GUI frontends. It supports multiple components, including non-linear and frequency-varrying components.
 ## Installation
-You can find zip binary package in github releases.
+You can find zip binary package in github [releases](https://github.com/hamza-Algohary/Circuit-Simulator/releases).
 ## Build From Source
 First clone the github repository,
 ```
