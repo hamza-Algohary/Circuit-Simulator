@@ -1,11 +1,4 @@
-<<<<<<< HEAD
-# Circuit-Simulator
-A simple yet powerful circuit cimulator for the 21th century.
-
-It currently provides CLI frontend, and we're working to release the GUI as soon as possible.
-More on how to use this program later.
-=======
-##Overview
+## Overview
 Circuit Simulator is a circuit simulation program. It's written in Java, hence it's available on Windows Mac & Linux. It provides both CLI and GUI frontends. It supports multiple components, including non-linear and frequency-varrying components.
 ## Installation
 You can find zip binary package in github releases.
@@ -35,7 +28,9 @@ r 0,1 1,1 5
 r 1,0 1,1 5
 ```
 Which corresponds to the following circuit:
+
 ![Simple Circuit Imgae](screenshots/circuit.svg)
+
 To run the program with that file, navigate to bin directory then fire up a terminal and type:
 `./run.sh test.txt`
 if you're running it for the first time you need to type this command first:
@@ -89,7 +84,7 @@ Where variable name is either __node voltage__ or __branch current__.
 Node voltage is "V" followed by node coordinate
 Branch current is "I" followed by start then end coordinates of the branch.
 
-####How to determine current direction?
+#### How to determine current direction?
 Let current name be `Ix1,y1:x2,y2`, if the value is positive then it's flowing from x1,y1 to x2,y2, otherwise it's flowing the other way.
 	
 ## The Oscilliscope
@@ -115,4 +110,3 @@ This is just a prototype of the planned GUI, the end result will be (hopefully) 
 
 ![Screenshot](screenshots/main_window.png)
 
->>>>>>> e18b782 (Added a meaningful README)
