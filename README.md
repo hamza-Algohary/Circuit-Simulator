@@ -61,8 +61,10 @@ I0.0,0.0:0.0,1.0 = -2.0
 ```
 
 ## Input File Structure
-The general structure for input file is the following
+The general structure for each line in the input file is the following
+
 ```<Component Name> <Start Coordinate> <End Coordinate> <Arguments> <Monitored variable (Optional)>```
+
 Available names:
 - r (Resistance)
 - dcv (DC Voltage Source)
