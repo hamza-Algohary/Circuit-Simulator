@@ -95,6 +95,7 @@ For dc circuits, the result.txt might be enough, but inorder for AC simulaiton t
 To monitor Voltage of a component simply add `mv` at the end of this component. Similarly add `mi` to monitor current.
 
 __Example (Half Wave Rectifier)__
+
 Input File:
 ```
 acv 0,0 1,0 60 30
@@ -104,6 +105,7 @@ d 1,0 1,1 -0.7 mv
 ```
 
 Oscilliscope:
+
 ![Oscilliscope-for-half-wave-rectifier](screenshots/rectifier.gif)
 
 ## Prototype of GUI Frontend
