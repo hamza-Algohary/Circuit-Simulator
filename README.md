@@ -104,7 +104,7 @@ Branch current is "I" followed by start then end coordinates of the branch.
 Let current name be `Ix1,y1:x2,y2`, if the value is positive then it's flowing from x1,y1 to x2,y2, otherwise it's flowing the other way.
 	
 ## The Oscilliscope
-For dc circuits, the result.txt might be enough, but inorder for AC simulaiton to be useful, there must be a mean for monitoring currents or potential differences of components in real time. Using the oscilliscope is as easy as adding two letters to the input file. In the meantime you can only monitor current or potential difference across a single component, support for monitoring potential difference between any two points will be provided in future release.
+For dc circuits, the result.txt file might be enough, but inorder for AC simulaiton to be useful, there must be a mean for monitoring currents or potential differences of components in real time. Using the oscilliscope is as easy as adding two letters to the input file. In the meantime you can only monitor current or potential difference across a single component, support for monitoring potential difference between any two points will be provided in future release.
 
 To monitor Voltage of a component simply add `mv` at the end of this component. Similarly add `mi` to monitor current.
 
