@@ -130,4 +130,5 @@ This is just a prototype of the planned GUI, the end result will be (hopefully) 
 
 ## License
 This project is licensed under GNU General Public License v3. 
+
 Jchart2D is licensed under Apache v2.0 open source license.
