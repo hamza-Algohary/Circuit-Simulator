@@ -77,7 +77,7 @@ Available names:
 
 Inorder to decide coordinates, draw the desired circuit as shown above then give each node a coordinate. To make the process easiear align all components to be either horizontal or vertical, otherwise the program may produce unexpected results.
 
-All components don't care which terminal is their start and which is their end, except three components (dcv , dci & d). For dcv and dci, the negative terminal as at start and positive terminal is at end. For the PN-junction diode P is at start, and N is at end.
+All components don't care which terminal is their start and which is their end, except three components (dcv , dci & d). For dcv and dci, the negative terminal is at start and positive terminal is at end. For the PN-junction diode P is at start, and N is at end.
 
 Here is a list of expected arguments for each component:
 - r (resistance)
