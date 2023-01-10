@@ -58,7 +58,7 @@ public class MainUI {
         });
         JPanel p4 = new JPanel();
         p4.setBounds(700,50,300,150);
-        p4.setBackground(Color.RED);
+        //p4.setBackground(Color.RED);
         p4.setLayout(null);
         p4.add(b3);
 
@@ -73,7 +73,7 @@ public class MainUI {
         });
         JPanel p5 = new JPanel();
         p5.setBounds(700,250,300,150);
-        p5.setBackground(Color.blue);
+        //p5.setBackground(Color.blue);
         p5.setLayout(null);
         p5.add(b4);
 
@@ -208,7 +208,7 @@ public class MainUI {
 
         JPanel p1 = new JPanel();
         p1.setBounds(0,0,1000,50);
-        p1.setBackground(Color.CYAN);
+        //p1.setBackground(Color.CYAN);
         p1.add(b1);
         p1.add(b2);
         p1.add(b5);
@@ -217,7 +217,7 @@ public class MainUI {
 
         JPanel p2 = new JPanel();
         p2.setBounds(0,50,700,630);
-        p2.setBackground(Color.orange);
+        //p2.setBackground(Color.orange);
         p2.setLayout(new GridLayout(rows,cols));
         //p2.add(ilabel);
         //Integer i = 0 , j = 0;
