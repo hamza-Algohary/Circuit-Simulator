@@ -124,9 +124,34 @@ Oscilliscope:
 
 ## Prototype of GUI Frontend
 
-This is just a prototype of the planned GUI, the end result will be (hopefully) prettier and might get rewritten with another toolkit.
+The following is just a prototype of currently proposed GUI. It might get redesigned and/or completely rewritten using another toolkit if required.
 
 ![Screenshot](screenshots/main_window.png)
+
+### Usage
+The GUI is simple and inituitive, by applying the following instructions you should be able to use the program to its full potential.
+#### Step 1 (Add Components)
+To draw the the circuit, click on one of the buttons in the grid to add a component.
+Then select the desired component with desired arguments.
+
+![choosing-component-gif](choose_component.gif)
+
+#### Step 2 (Rotate Components)
+To rotate a component, click on change button to change mode to select. Then click on the desired component, then click on rotate.
+
+![rotating-component-gif](rotating_component.gif)
+
+#### Step 3 (Add Other Component)
+To be able to add another component make sure to press the button labeled "select" to change mode to change. Then click on a button in the grid and choose a component.
+
+![full-circuit-example](main_window_with_circuit.png)
+
+__NOTE: The following step is still not implemented yet.__
+
+#### Step 4 (Start Simulation)
+Just press the run button.
+To see the status of any component (Current, potential difference, resistance) make sure that you're on select mode then click on the desired component, its status will appear in the info bar.
+To use the Oscilliscope you have to enter the variables which are meant to be monitored. The first oscilliscope is for monitoring current, hence it has one text field for entering desired branch coordinates. While the second oscilliscope is for monitoring potential difference, therefore it has two text fields, where it expects the two nodes coordinates whose potential difference is desired to be monitored.
 
 ## License
 This project is licensed under GNU General Public License v3. 
