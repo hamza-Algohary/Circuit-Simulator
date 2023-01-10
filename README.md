@@ -112,10 +112,10 @@ __Example (Half Wave Rectifier)__
 
 Input File:
 ```
-acv 0,0 1,0 60 30
-r 0,0 0,1 5
+acv 0,0 1,0 60 220
+r 0,0 0,1 5 mi
 r 0,1 1,1 5
-d 1,0 1,1 -0.7 mv
+d 1,0 1,1 -0.7
 ```
 
 Oscilliscope:
