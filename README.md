@@ -141,7 +141,7 @@ To rotate a component, click on change button to change mode to select. Then cli
 
 ![rotating-component-gif](screenshots/rotating_component.gif)
 
-#### Step 3 (Add Other Component)
+#### Step 3 (Add Other Components)
 To be able to add another component make sure to press the button labeled "select" to change mode to change. Then click on a button in the grid and choose a component.
 
 ![full-circuit-example](screenshots/main_window_with_circuit.png)
